@@ -50,16 +50,16 @@ The `jsCode` you return will be wrapped in
 
 The `opts` we supply are:
 
-* **`embedded`**: always `true`
+* `embedded`: always `true`
 
-* **`kind`**: either `"expression"` (for `«»` syntax) or `"function"` (for `~>`
+* `kind`: either `"expression"` (for `«»` syntax) or `"function"` (for `~>`
   syntax).  Note that in both cases you should have a `return` statement in
   your output.
 
-* **`line`**, **`column`**: the position in the original source where DSL code
+* `line`, `column`: the position in the original source where DSL code
   begins
 
-* **`vars`**: a list of dictionaries describing variables in enclosing scopes,
+* `vars`: a list of dictionaries describing variables in enclosing scopes,
   e.g. for this piece of code
 
         var a = 123;
