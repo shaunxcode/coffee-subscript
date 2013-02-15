@@ -1,0 +1,22 @@
+{
+  "name": "coffee-subscript",
+  "version": "0.0.1",
+  "description": "Integration between CoffeeScript and arbitrary DSL-s that compile to JavaScript",
+  "keywords": ["coffee", "coffee-script", "embedded", "dsl", "domain-specific", "language"],
+  "homepage": "https://github.com/ngn/coffee-subscript/",
+  "bugs": "https://github.com/ngn/coffee-subscript/issues?state=open",
+  "author": "Nikolay G. Nikolov",
+  "directories": {
+    "lib": "./lib",
+    "bin": "./bin"
+  },
+  "repository": {"type": "git", "url": "https://github.com/ngn/coffee-subscript.git"},
+  "dependencies": {
+    "coffee-script": ">=1.4.0"
+  },
+  "devDependencies": {
+    "docco": ">=0.3.0"
+  },
+  "engines": {"node": ">=0.6.18"},
+  "licenses": [{"type": "MIT", "url": "https://github.com/ngn/coffee-subscript/raw/master/LICENSE"}]
+}
