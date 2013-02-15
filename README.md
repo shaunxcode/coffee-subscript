@@ -62,12 +62,11 @@ The `opts` we supply are:
 * `vars`: a list of dictionaries describing variables in enclosing scopes,
   e.g. for this piece of code
 
-        var a = 123;
-        function f(b) {
-            var c = 'bar';
-            «...»
-        }
+        a = 123
+        b = (c) ->
+          d = 'bar'
+          «...»
 
   you will get
 
-        [{"name": "a"}, {"name": "b"}, {"name": "c"}]
+        [{"name": "a"}, {"name": "b"}, {"name": "c"}, {"name": "d"}]
