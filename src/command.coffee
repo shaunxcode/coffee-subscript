@@ -122,6 +122,7 @@ compileScript = (file, input, base) ->
   options = compileOptions file
   try
     t = task = {file, input, options}
+    t.input = require('./coffee-subscript').preprocess t.input
     CoffeeScript.emit 'compile', task
     if      o.tokens      then printTokens CoffeeScript.tokens t.input, t.options
     else if o.nodes       then printLine CoffeeScript.nodes(t.input, t.options).toString().trim()
