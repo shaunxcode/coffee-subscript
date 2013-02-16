@@ -7,7 +7,6 @@
 # External dependencies.
 fs             = require 'fs'
 path           = require 'path'
-helpers        = require './helpers'
 optparse       = require './optparse'
 CoffeeScript   = require 'coffee-script'
 {spawn, exec}  = require 'child_process'
@@ -16,7 +15,7 @@ CoffeeScript   = require 'coffee-script'
 exists         = fs.exists or path.exists
 
 # Allow CoffeeScript to emit Node.js events.
-helpers.extend CoffeeScript, new EventEmitter
+CoffeeScript.helpers.extend CoffeeScript, new EventEmitter
 
 printLine = (line) -> process.stdout.write line + '\n'
 printWarn = (line) -> process.stderr.write line + '\n'
