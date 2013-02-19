@@ -1,6 +1,6 @@
 {
   "name": "coffee-subscript",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Integration between CoffeeScript and arbitrary DSL-s that compile to JavaScript",
   "keywords": ["coffee", "coffee-script", "embedded", "dsl", "domain-specific", "language"],
   "homepage": "https://github.com/ngn/coffee-subscript/",
@@ -10,6 +10,7 @@
     "lib": "./lib",
     "bin": "./bin"
   },
+  "main": "./lib/coffee-subscript",
   "repository": {"type": "git", "url": "https://github.com/ngn/coffee-subscript.git"},
   "dependencies": {
     "coffee-script": ">=1.4.0"
