@@ -1,7 +1,3 @@
-# DRAFT
-
-----
-
 CoffeeSubscript is like
 [CoffeeScript](http://jashkenas.github.com/coffee-script/) but enabling you to
 embed DSL fragments in your source code.  For instance
