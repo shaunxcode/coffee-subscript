@@ -21,14 +21,14 @@ exports.preprocess = (mixedCode, opts = {}) ->
   lines = mixedCode.split '\n'
   i = 0
   while i < lines.length
-    if /~>$/.test lines[i]
+    if /~>$\s*/.test lines[i]
       indent = lines[i].replace /^([ \t]*).*$/, '$1'
       indentRE = new RegExp '^' + indent.replace(/\t/g, '\\t') + '[ \t]'
       j = i + 1
       while j < lines.length and indentRE.test lines[j]
         j++
       fragments.push kind: 'function', dslCode: lines[i + 1 ... j].join('\n')
-      lines[i] = lines[i].replace /~>$/, "`@#{fragments.length - 1}`"
+      lines[i] = lines[i].replace /~>$\s*/, "`@#{fragments.length - 1}`"
       for k in [i + 1 ... j] by 1 then lines[k] = ''
       i = j
     else
