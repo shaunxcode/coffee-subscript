@@ -33,6 +33,7 @@ BANNER = '''
 SWITCHES = [
   ['-b', '--bare',            'compile without a top-level function wrapper']
   ['-c', '--compile',         'compile to JavaScript and save as .js files']
+  ['-d', '--dsl [MODULE]',    'module to use when compiling DSL blocks']
   ['-e', '--eval',            'pass a string from the command line as input']
   ['-h', '--help',            'display this help message']
   ['-i', '--interactive',     'run an interactive CoffeeScript REPL']
@@ -121,7 +122,7 @@ compileScript = (file, input, base) ->
   options = compileOptions file
   try
     t = task = {file, input, options}
-    t.input = require('./coffee-subscript').preprocess t.input
+    t.input = require('./coffee-subscript').preprocess t.input, o
     CoffeeScript.emit 'compile', task
     if      o.tokens      then printTokens CoffeeScript.tokens t.input, t.options
     else if o.nodes       then printLine CoffeeScript.nodes(t.input, t.options).toString().trim()
