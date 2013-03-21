@@ -28,7 +28,7 @@ would compile a script peppered with DSL chunks.
 
 To specify a custom DSL handler use the -d or --dsl command line option:
 
-    coffee-subscript -d jsedn path/to/script.coffee
+    coffee-subscript -d jsedn -c path/to/script.coffee
 
 would compile a script using jsedn as the DSL compiler.
 
