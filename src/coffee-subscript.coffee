@@ -17,11 +17,47 @@ exports.preprocess = (mixedCode, opts = {}) ->
     padding = dslCode.replace /[^\n]/g, '' # pad with newlines to preserve line numbering
     "`@#{fragments.length - 1}#{padding}`"
 
-  # Collect bodies of squiggly arrow funtions (`~>`)
+  # Collect bodies of inline squiggly arrow funtions (`~>`)
   lines = mixedCode.split '\n'
   i = 0
   while i < lines.length
-    if /~>\s*$/.test lines[i]
+    if /\(\s*~>.*\)/.test lines[i]
+        while (squiggleStart = lines[i].indexOf "~>") isnt -1
+            startPos = squiggleStart
+            while (startPos > 0)
+                startPos--
+                if lines[i][startPos] is "("
+                    break
+
+            max = lines[i].length - 1
+            escape = false
+            inQuote = false
+            parens = 1
+            stopPos = squiggleStart + 1
+            while parens
+                stopPos++
+                if stopPos > max 
+                    throw "Did not match paren"
+                if inQuote
+                    if escape
+                        escape = false
+                    else if lines[i][stopPos] is "\\"
+                        escape = true
+                    else if lines[i][stopPos] is '"'
+                        inQuote = false
+                else if lines[i][stopPos] is '"'
+                    inQuote = true
+                else if lines[i][stopPos] is "("
+                    parens++
+                else if lines[i][stopPos] is ")"
+                    parens--
+
+            fragments.push kind: 'function', dslCode: lines[i][squiggleStart+2..stopPos-1]
+            lines[i] = lines[i].replace(lines[i][startPos..stopPos], "`@#{fragments.length - 1}`")
+
+        i++
+    # Collect bodies of multiline squiggly arrow functions
+    else if /~>\s*$/.test lines[i]
       indent = lines[i].replace /^([ \t]*).*$/, '$1'
       indentRE = new RegExp '^' + indent.replace(/\t/g, '\\t') + '[ \t]'
       j = i + 1
